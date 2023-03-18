@@ -1,0 +1,21 @@
+name: main
+on:
+  push:
+
+jobs:
+  main:
+    name: main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version-file: './go.mod'
+      - name: go mod tidy with GOPROXY=direct
+        run: |
+          go mod tidy
+        env:
+          GOPROXY: direct
+      - name: go mod tidy
+        run: |
+          go mod tidy
