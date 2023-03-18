@@ -13,6 +13,7 @@ jobs:
           go-version-file: './go.mod'
       - name: go mod tidy with GOPROXY=direct
         run: |
+          go env
           go mod tidy
         env:
           GOPROXY: direct
@@ -33,6 +34,7 @@ jobs:
           go-version-file: './go.mod'
       - name: go mod tidy
         run: |
+          go env
           go mod tidy
       - name: show metadata
         run: |
