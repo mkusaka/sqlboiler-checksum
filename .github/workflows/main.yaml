@@ -3,7 +3,7 @@ on:
   push:
 
 jobs:
-  main:
+  direct:
     name: main
     runs-on: ubuntu-latest
     steps:
@@ -16,6 +16,27 @@ jobs:
           go mod tidy
         env:
           GOPROXY: direct
+      - name: show metadata
+        run: |
+          echo "go.mod"
+          cat go.mod
+          echo "go.sum"
+          cat go.sum
+
+  proxy:
+    name: main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version-file: './go.mod'
       - name: go mod tidy
         run: |
           go mod tidy
+      - name: show metadata
+        run: |
+          echo "go.mod"
+          cat go.mod
+          echo "go.sum"
+          cat go.sum
